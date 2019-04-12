@@ -5,7 +5,7 @@ class HTTPConn {
   }
 
   getBoard() {
-    const route = `/board?id=${config.ID}`
+    const route = `/board`
     fetch(this.endpoint + route, { method: 'GET' })
       .then(response => response.arrayBuffer())
       .then(bufferData => {
@@ -16,7 +16,7 @@ class HTTPConn {
   }
 
   setTile(x, y, c) {
-    fetch(this.endpoint + `/tile?x=${x}&y=${y}&c=${c}&id=${config.ID}`, {
+    fetch(this.endpoint + `/tile?x=${x}&y=${y}&c=${c}`, {
       method: 'Post',
       mode: 'no-cors'
     })
@@ -26,11 +26,4 @@ class HTTPConn {
       })
   }
 
-  getGroupInfo() {
-    fetch(`${this.endpoint}/groups?id=${config.ID}`, { method: 'GET' })
-      .then(r => r.json())
-      .then(groupData => {
-        // console.log('%cGETTED GROUP! ', 'color: green', groupData)
-      })
-  }
 }
